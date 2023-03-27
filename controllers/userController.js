@@ -9,10 +9,10 @@ module.exports = {
   },
   // Get a user by id
   getSingleUser(req, res) {
-    User.findOne({ _id: req.params.courseId })
+    User.findOne({ _id: req.params.userId })
       .select('-__v')
       .then((user) =>
-        !course
+        !user
           ? res.status(404).json({ message: 'No user with that ID' })
           : res.json(user)
       )
@@ -52,7 +52,6 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-
   // Add a friend
   addFriend(req, res) {
     User.findOneAndUpdate(
